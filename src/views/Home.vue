@@ -1,18 +1,59 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+
+    <div class="Home-body-color">
+        <HeaderApp></HeaderApp>
+        <div class="container mt-5">
+            <div class="row">
+                <div v-for="image in dataImage" :key="image.url" class="col-3 mx-4">
+                    <ImageGallery 
+                        :srcImage="image.url"
+                        :titleImage="image.titleImage"  
+                    >
+                                
+                    </ImageGallery>
+                </div>
+                <div v-for="image in dataImage" :key="image.titleImage" class="col-3 mx-4">
+                    <ImageGallery 
+                        :srcImage="image.url"
+                        :titleImage="image.titleImage"  
+                    >
+                                
+                    </ImageGallery>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import HeaderApp from '@/components/layouts/HeaderApp.vue'
+import ImageGallery from '@/components/layouts/ImageGallery.vue'
+
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+     data(){
+        return{
+            dataImage : [
+                { url : 'https://picsum.photos/300/200?image=244' , titleImage : 'Pelicanos'},
+                { url : 'https://picsum.photos/300/200?image=1024' , titleImage : 'Pato Aguila'},
+                { url : 'https://picsum.photos/300/200?image=611', titleImage : 'Pelicanos All' }     
+            ]
+        }
+    },
+    components: {
+        HeaderApp,
+        ImageGallery
+    }
 }
+
 </script>
+
+<style scoped>
+
+.Home-body-color{
+    background-color: #fdfdfd ; 
+}
+    
+</style>
